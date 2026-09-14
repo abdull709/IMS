@@ -4,7 +4,7 @@ return [
     'app' => [
         'name' => 'Inventory Management System',
         'timezone' => 'Africa/Lagos',
-        'debug' => true,
+        'debug' => false,
         'base_url' => '',
         'clean_urls' => false,
         'asset_prefix' => 'public',
@@ -12,8 +12,8 @@ return [
     'database' => [
         'host' => 'localhost',
         'port' => '3306',
-        'name' => 'IMS_database',
-        'user' => 'IMS_username',
+        'name' => 'u803159623_IMS_database',
+        'user' => 'u803159623_IMS_username',
         'password' => 'Ims70912',
         'charset' => 'utf8mb4',
     ],

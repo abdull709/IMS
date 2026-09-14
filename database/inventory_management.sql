@@ -1,4 +1,4 @@
--- Select the IMS_database database in phpMyAdmin before importing this file.
+-- Select the u803159623_IMS_database database in phpMyAdmin before importing this file.
 SET NAMES utf8mb4;
 
 SET FOREIGN_KEY_CHECKS = 0;
