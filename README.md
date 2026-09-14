@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Inventory Management System for a Local Business
 
 This is a PHP/MySQL inventory and sales management system for a local business. It includes authentication, role-based access control, products, categories, stock tracking, sales recording, automatic stock deduction, receipts, reports, user management, profile management, and business settings.
@@ -111,3 +112,6 @@ C:\xampp\php\php.exe -l public\index.php
 ```
 
 Repeat for files in `app` or use your editor's PHP diagnostics.
+=======
+# IMS
+>>>>>>> f317b88ed00879c534a220bcbf40469aa476640b

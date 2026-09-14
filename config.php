@@ -12,9 +12,9 @@ return [
     'database' => [
         'host' => '127.0.0.1',
         'port' => '3306',
-        'name' => 'inventory_management',
-        'user' => 'root',
-        'password' => '',
+        'name' => 'IMS_database',
+        'user' => 'IMS_username',
+        'password' => 'Ims70912',
         'charset' => 'utf8mb4',
     ],
 ];
