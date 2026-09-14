@@ -40,7 +40,7 @@ class Report extends Model
             'SELECT p.product_name, p.product_code, SUM(si.quantity) AS quantity_sold, SUM(si.subtotal) AS sales_amount
              FROM sale_items si
              JOIN products p ON p.id = si.product_id
-             GROUP BY p.id
+             GROUP BY p.id, p.product_name, p.product_code
              ORDER BY quantity_sold DESC
              LIMIT :limit'
         );
@@ -92,7 +92,7 @@ class Report extends Model
              JOIN users u ON u.id = s.user_id
              LEFT JOIN sale_items si ON si.sale_id = s.id
              {$where}
-             GROUP BY s.id
+             GROUP BY s.id, s.sale_date, s.invoice_number, u.full_name, s.total_amount
              ORDER BY s.sale_date DESC"
         );
         $stmt->execute($params);
@@ -124,7 +124,7 @@ class Report extends Model
              JOIN products p ON p.id = si.product_id
              LEFT JOIN categories c ON c.id = p.category_id
              {$where}
-             GROUP BY p.id
+             GROUP BY p.id, p.product_name, p.product_code, c.category_name
              ORDER BY quantity_sold DESC, sales_amount DESC"
         );
         $stmt->execute($params);

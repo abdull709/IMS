@@ -27,7 +27,7 @@ class Sale extends Model
              JOIN users u ON u.id = s.user_id
              LEFT JOIN sale_items si ON si.sale_id = s.id
              {$where}
-             GROUP BY s.id
+             GROUP BY s.id, s.invoice_number, s.user_id, s.sale_date, s.subtotal, s.discount, s.total_amount, s.amount_paid, s.balance, s.payment_status, s.notes, s.created_at, s.updated_at, u.full_name
              ORDER BY s.sale_date DESC, s.id DESC
              LIMIT :limit OFFSET :offset"
         );

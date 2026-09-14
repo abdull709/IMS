@@ -40,7 +40,7 @@ class Category extends Model
              FROM categories c
              LEFT JOIN products p ON p.category_id = c.id
              {$where}
-             GROUP BY c.id
+             GROUP BY c.id, c.category_name, c.description, c.status, c.created_at, c.updated_at
              ORDER BY c.created_at DESC
              LIMIT :limit OFFSET :offset"
         );

@@ -19,6 +19,29 @@ function config(?string $key = null, mixed $default = null): mixed
     return $config;
 }
 
+function app_log(string $message): void
+{
+    if (!defined('STORAGE_PATH')) {
+        error_log($message);
+        return;
+    }
+
+    $logDir = STORAGE_PATH . DIRECTORY_SEPARATOR . 'logs';
+    if (!is_dir($logDir)) {
+        @mkdir($logDir, 0775, true);
+    }
+
+    $line = '[' . date('c') . '] ' . $message . PHP_EOL;
+    if (@file_put_contents($logDir . DIRECTORY_SEPARATOR . 'app.log', $line, FILE_APPEND) === false) {
+        error_log($message);
+    }
+}
+
+function app_log_exception(\Throwable $exception): void
+{
+    app_log((string) $exception);
+}
+
 function e(?string $value): string
 {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');

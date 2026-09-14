@@ -40,7 +40,7 @@ class Router
             $controller = new $class();
             $controller->{$methodName}();
         } catch (\Throwable $exception) {
-            error_log($exception);
+            app_log_exception($exception);
 
             if (config('app.debug', false)) {
                 http_response_code(500);

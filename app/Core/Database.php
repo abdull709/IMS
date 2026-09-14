@@ -37,7 +37,7 @@ class Database
                 throw $exception;
             }
 
-            error_log($exception->getMessage());
+            app_log_exception($exception);
             http_response_code(500);
             exit('Database connection error.');
         }
