@@ -39,7 +39,7 @@ Common fixes:
 
 1. Confirm `config.php` points at the same database where `database/inventory_management.sql` was imported.
 2. Confirm the production database contains all required tables: `users`, `categories`, `products`, `sales`, `sale_items`, `stock_movements`, and `settings`.
-3. If the log says `Unknown column 'last_login'`, import `database/repair_login_500.sql` or add the missing `users.last_login`, `users.created_at`, and `users.updated_at` columns manually.
+3. Import `database/repair_login_500.sql`. It repairs missing login columns and non-destructively creates any dashboard tables skipped by a partial import.
 4. Temporarily set `debug` to `true` in `config.php` only while diagnosing, then set it back to `false`.
 
 ## Application URL

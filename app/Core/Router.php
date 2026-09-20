@@ -49,7 +49,11 @@ class Router
             }
 
             http_response_code(500);
-            $this->renderError('500', 'Server Error', 'The application encountered an unexpected error.');
+            $message = 'The application encountered an unexpected error.';
+            if (is_admin()) {
+                $message = 'Database/application error: ' . $exception->getMessage();
+            }
+            $this->renderError('500', 'Server Error', $message);
         }
     }
 
