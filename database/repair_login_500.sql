@@ -132,12 +132,14 @@ WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'staff');
 
 UPDATE users
 SET full_name = CASE WHEN full_name = '' THEN 'System Administrator' ELSE full_name END,
+    password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi.',
     role = 'admin',
     status = 'active'
 WHERE username = 'admin';
 
 UPDATE users
 SET full_name = CASE WHEN full_name = '' THEN 'Sales Staff' ELSE full_name END,
+    password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi.',
     role = 'staff',
     status = 'active'
 WHERE username = 'staff';
