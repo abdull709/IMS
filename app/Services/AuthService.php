@@ -28,18 +28,24 @@ class AuthService
         }
 
         session_regenerate_id(true);
-        $this->users->updateLastLogin((int) $user['id']);
-        $fresh = $this->users->find((int) $user['id']);
+
+        $fresh = $user;
+        try {
+            $this->users->updateLastLogin((int) $user['id']);
+            $fresh = $this->users->find((int) $user['id']) ?? $user;
+        } catch (\Throwable $exception) {
+            app_log_exception($exception);
+        }
 
         $_SESSION['user'] = [
             'id' => (int) $fresh['id'],
             'full_name' => $fresh['full_name'],
             'username' => $fresh['username'],
-            'email' => $fresh['email'],
+            'email' => $fresh['email'] ?? null,
             'role' => $fresh['role'],
             'status' => $fresh['status'],
-            'last_login' => $fresh['last_login'],
-            'created_at' => $fresh['created_at'],
+            'last_login' => $fresh['last_login'] ?? null,
+            'created_at' => $fresh['created_at'] ?? null,
         ];
 
         return true;

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Inventory Management System for a Local Business
 
 This is a PHP/MySQL inventory and sales management system for a local business. It includes authentication, role-based access control, products, categories, stock tracking, sales recording, automatic stock deduction, receipts, reports, user management, profile management, and business settings.
@@ -31,6 +30,17 @@ This is a PHP/MySQL inventory and sales management system for a local business. 
 
 - Admin: `admin` / `password`
 - Staff: `staff` / `password`
+
+## Login 500 Troubleshooting
+
+If `admin` / `password` submits successfully but the next page shows `500 - Server Error`, check `storage/logs/app.log` on the server. That message means the real PHP/PDO exception was hidden because `debug` is disabled.
+
+Common fixes:
+
+1. Confirm `config.php` points at the same database where `database/inventory_management.sql` was imported.
+2. Confirm the production database contains all required tables: `users`, `categories`, `products`, `sales`, `sale_items`, `stock_movements`, and `settings`.
+3. If the log says `Unknown column 'last_login'`, import `database/repair_login_500.sql` or add the missing `users.last_login`, `users.created_at`, and `users.updated_at` columns manually.
+4. Temporarily set `debug` to `true` in `config.php` only while diagnosing, then set it back to `false`.
 
 ## Application URL
 
@@ -112,6 +122,3 @@ C:\xampp\php\php.exe -l public\index.php
 ```
 
 Repeat for files in `app` or use your editor's PHP diagnostics.
-=======
-# IMS
->>>>>>> f317b88ed00879c534a220bcbf40469aa476640b
