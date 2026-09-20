@@ -63,4 +63,6 @@ $router->post('profile/password', 'ProfileController@password');
 $router->get('settings', 'SettingsController@index');
 $router->post('settings/update', 'SettingsController@update');
 
+$router->get('diagnostics/errors', 'DiagnosticsController@errors');
+
 $router->dispatch();
