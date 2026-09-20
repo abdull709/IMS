@@ -6,6 +6,22 @@ SET @current_database = DATABASE();
 
 SELECT CONCAT('Repair target database: ', COALESCE(@current_database, '(none selected)')) AS message;
 
+CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(120) NOT NULL,
+    username VARCHAR(60) NOT NULL,
+    email VARCHAR(120) NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'staff') NOT NULL DEFAULT 'staff',
+    status ENUM('active', 'inactive') NOT NULL DEFAULT 'active',
+    last_login TIMESTAMP NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_users_username (username),
+    UNIQUE KEY uq_users_email (email),
+    INDEX idx_users_role_status (role, status)
+) ENGINE=InnoDB;
+
 SET @sql = (
     SELECT IF(COUNT(*) = 0,
         'ALTER TABLE users ADD COLUMN full_name VARCHAR(120) NOT NULL DEFAULT '''' AFTER id',

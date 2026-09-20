@@ -2,6 +2,8 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteRule ^(?:app|database|storage|views)(?:/|$) - [F,L,NC]
+    RewriteRule ^(?:config(?:\.example)?\.php|README\.md|TECHNICAL_DOCUMENTATION\.md|USER_MANUAL\.md|TESTING\.md|PROGRESS\.md)$ - [F,L,NC]
     RewriteRule ^public/ - [L]
     RewriteRule ^assets/(.*)$ public/assets/$1 [L]
     RewriteCond %{REQUEST_FILENAME} !-f

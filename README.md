@@ -39,7 +39,7 @@ Common fixes:
 
 1. Confirm `config.php` points at the same database where `database/inventory_management.sql` was imported.
 2. Confirm the production database contains all required tables: `users`, `categories`, `products`, `sales`, `sale_items`, `stock_movements`, and `settings`.
-3. Import `database/repair_login_500.sql`. It repairs missing login columns and non-destructively creates any dashboard tables skipped by a partial import.
+3. Select the configured database in phpMyAdmin and import `database/repair_login_500.sql`. It creates a missing `users` table, repairs login columns, and non-destructively creates dashboard tables skipped by a partial import.
 4. Temporarily set `debug` to `true` in `config.php` only while diagnosing, then set it back to `false`.
 
 ## Application URL

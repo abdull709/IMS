@@ -50,7 +50,9 @@ class Router
 
             http_response_code(500);
             $message = 'The application encountered an unexpected error.';
-            if (is_admin()) {
+            if ($exception instanceof \PDOException && str_contains($exception->getMessage(), 'doesn\'t exist')) {
+                $message = 'Database setup is incomplete. Import database/repair_login_500.sql into the configured database.';
+            } elseif (is_admin()) {
                 $message = 'Database/application error: ' . $exception->getMessage();
             }
             $this->renderError('500', 'Server Error', $message);
