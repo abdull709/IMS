@@ -1,5 +1,22 @@
 # Manual QA Checklist
 
+## Controller and Route Regression Check
+
+Run `php tests/controller_routes.php` before uploading PHP changes. It loads every
+controller and checks that every registered route points to a callable public
+action, without connecting to the database. This catches inherited method
+signature conflicts that can pass individual `php -l` checks.
+
+After deployment, open Products, New Sale, and Sales History while logged in.
+Also open a product's detail page and a sale's receipt to check the existing
+`products/view` and `sales/view` URLs.
+
+Verified with PHP 8.2.34: all 63 PHP files pass syntax checks, all 11 controllers
+load, and all 46 route actions are callable. Products, New Sale, Sales History,
+product details, receipts, and product search render with SQLite fixture data
+for both admin and staff; product and sales filters also pass. These local
+checks do not verify the hosted MySQL database or deployment.
+
 | Test ID | Module | Scenario | Steps | Expected Result | Actual Result | Status |
 |---|---|---|---|---|---|---|
 | T-001 | Authentication | Valid admin login | Log in with `admin` / `password` | Admin reaches dashboard | Pending local run | Pending |

@@ -42,6 +42,16 @@ Common fixes:
 3. Select the configured database in phpMyAdmin and import `database/repair_login_500.sql`. It creates a missing `users` table, repairs login columns, and non-destructively creates dashboard tables skipped by a partial import.
 4. Temporarily set `debug` to `true` in `config.php` only while diagnosing, then set it back to `false`.
 
+## Products and Sales HTTP 500 Troubleshooting
+
+If Products, New Sale, and Sales History fail while other pages work, update
+`app/Controllers/ProductController.php`, `app/Controllers/SaleController.php`,
+and `public/index.php` together. The product detail and sale receipt actions are
+named `show` so they do not override the shared `Controller::view` renderer with
+an incompatible signature. Their URLs remain `products/view` and `sales/view`.
+This fix requires no database import. Run `php tests/controller_routes.php` to
+check controller loading and route actions before uploading.
+
 ## Application URL
 
 Default XAMPP URL:

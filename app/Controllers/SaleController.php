@@ -70,7 +70,7 @@ class SaleController extends Controller
         }
     }
 
-    public function view(): void
+    public function show(): void
     {
         $this->requireLogin();
         $id = (int) input('id');

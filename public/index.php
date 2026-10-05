@@ -25,7 +25,7 @@ $router->post('categories/delete', 'CategoryController@delete');
 $router->get('products', 'ProductController@index');
 $router->get('products/create', 'ProductController@create');
 $router->post('products/store', 'ProductController@store');
-$router->get('products/view', 'ProductController@view');
+$router->get('products/view', 'ProductController@show');
 $router->get('products/edit', 'ProductController@edit');
 $router->post('products/update', 'ProductController@update');
 $router->post('products/delete', 'ProductController@delete');
@@ -39,7 +39,7 @@ $router->get('inventory/low-stock', 'InventoryController@lowStock');
 $router->get('sales', 'SaleController@index');
 $router->get('sales/create', 'SaleController@create');
 $router->post('sales/store', 'SaleController@store');
-$router->get('sales/view', 'SaleController@view');
+$router->get('sales/view', 'SaleController@show');
 $router->get('api/products/search', 'SaleController@searchProducts');
 
 $router->get('reports', 'ReportController@index');

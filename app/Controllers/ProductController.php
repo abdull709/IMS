@@ -75,7 +75,7 @@ class ProductController extends Controller
         redirect(url('products'));
     }
 
-    public function view(): void
+    public function show(): void
     {
         $this->requireLogin();
         $product = $this->products->find((int) input('id'));
